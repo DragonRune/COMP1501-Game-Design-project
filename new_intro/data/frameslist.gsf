@@ -1,0 +1,11 @@
+[Header]
+Type=GifSplitter Frames
+°æ±¾=2.0
+Count=6
+[Frames]
+IMG00000=D:\Projects\Game Design\new intro\new_intro\data\IMG00000.bmp
+IMG00001=D:\Projects\Game Design\new intro\new_intro\data\IMG00001.bmp
+IMG00002=D:\Projects\Game Design\new intro\new_intro\data\IMG00002.bmp
+IMG00003=D:\Projects\Game Design\new intro\new_intro\data\IMG00003.bmp
+IMG00004=D:\Projects\Game Design\new intro\new_intro\data\IMG00004.bmp
+IMG00005=D:\Projects\Game Design\new intro\new_intro\data\IMG00005.bmp
