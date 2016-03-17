@@ -14,11 +14,16 @@ float button3_x;
 float button3_y;
 float button3_width;
 float button3_height;
-//button updown1
+//button updown1 right bottom side
 float buttonUD1_x;
 float buttonUD1_y;
 float buttonUD1_width;
 float buttonUD1_height;
+//button updown2 left side
+float buttonUD2_x;
+float buttonUD2_y;
+float buttonUD2_width;
+float buttonUD2_height;
 
 //road point define
 //position of points see the pic in the files "titlescreen points position"
@@ -76,9 +81,14 @@ void setup()
   //button updown assignment
   //button1
   buttonUD1_x = width - button1_height;
-  buttonUD1_y = button2_y + (button3_y - button2_y)/2 + button1_height*2 - button1_height/4;
+  buttonUD1_y = button2_y + (button3_y - button2_y)/2 + button1_height*2 + button1_height/4;
   buttonUD1_width = button1_height/2;
   buttonUD1_height = button1_height/2;
+  //button2
+  buttonUD2_x = button1_height;
+  buttonUD2_y = button1_y + (button2_y - button1_y)/2 + button1_height*2.5 - button1_height/4;
+  buttonUD2_width = button1_height/2;
+  buttonUD2_height = button1_height/2;
   
   //road point define
   //position of points see the pic in the files points
