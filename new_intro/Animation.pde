@@ -2,7 +2,8 @@
 boolean isfacingRight = true;  //whether the stickman is facing right
 boolean isWalking = false;  //whether the stickman is walking
 boolean isfacingCurve = false;  //whether the stickman is on the curve or the flat ground
-boolean iscurveUp = false; //whether the stickman is walking upcurve or below curve
+boolean iscurveUpr = false; //whether the stickman is walking upcurve or below curve on right side of the screen
+boolean iscurveUpl = false; //whether the stickman is walking upcurve or below curve on left side of the screen
 float walkingSpeed = 12;
 String upordown;
 
@@ -72,12 +73,12 @@ void walking(){
   if (walking_x > buttonUD1_x - buttonUD1_width/2 && walking_x < buttonUD1_x + buttonUD1_width/2 && walking_y + walkingRF.getHeight() > tsy4 && walking_y + walkingRF.getHeight() < tsy1){
     if (keyPressed == true){
       if (keyCode == UP){
-        iscurveUp = true;
+        iscurveUpr = true;
         fill (255,255,255);
         text("UP", buttonUD1_x - 100, buttonUD1_y - 100);
       }
       if (keyCode == DOWN){
-        iscurveUp = false; 
+        iscurveUpr = false; 
         fill (255,255,255);
         text("DOWN", buttonUD1_x - 100, buttonUD1_y - 100);
       }
@@ -96,16 +97,16 @@ void walking(){
       walkingLF.display(walking_x, walking_y);
     }
     //first right curve walking
-    if (isfacingCurve == true && isfacingRight == true && iscurveUp == false){
+    if (isfacingCurve == true && isfacingRight == true && iscurveUpr == false){
       walking_y -= walkingSpeed*(tsy1 - tsy2)/(tsx4 - tsx3);
     }
-    if(isfacingCurve == true && isfacingRight == false && iscurveUp == false){
+    if(isfacingCurve == true && isfacingRight == false && iscurveUpr == false){
       walking_y += walkingSpeed*(tsy1 - tsy2)/(tsx4 - tsx3);
     }
-    if(isfacingCurve == true && isfacingRight == true && iscurveUp == true){
+    if(isfacingCurve == true && isfacingRight == true && iscurveUpr == true){
       walking_y += walkingSpeed*(tsy1 - tsy2)/(tsx4 - tsx3);
     }
-    if(isfacingCurve == true && isfacingRight == false && iscurveUp == true){
+    if(isfacingCurve == true && isfacingRight == false && iscurveUpr == true){
       walking_y -= walkingSpeed*(tsy1 - tsy2)/(tsx4 - tsx3);
     }
   }
