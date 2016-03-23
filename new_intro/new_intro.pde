@@ -111,7 +111,7 @@ void setup()
   walkingRF = new Animation("walkingRF",5);
   walkingLF = new Animation("walkingLF",5);
   walking_x = button3_x;
-  walking_y = button3_y + walkingRF.getHeight();
+  walking_y = button3_y + walkingRF.getHeight()/2;
   
   //Image assignments
   standingRF = loadImage("walkingRF0000.gif");  //standing image facing right on flat ground
