@@ -68,7 +68,7 @@ void setup()
   rectMode(CENTER);
   textAlign(CENTER, CENTER);
   //button assignments
-  //button1  start
+  //button1  credits
   button1_x = width/2;
   button1_y = height/2 - height/4 + height/14;  //height/14 is the detailed adjustment to make sure space at top for game title name
   button1_width = width/5.12;  //500 = width/5.12 = 2560/5.12
@@ -78,7 +78,7 @@ void setup()
   button2_y = height/2 + height/14;
   button2_width = width/5.12;
   button2_height = height/14.4;
-  //button3  credits
+  //button3  start
   button3_x = width/2;
   button3_y = height/2 + height/4 + height/14;
   button3_width = width/5.12;
@@ -121,7 +121,7 @@ void setup()
   walkingRF = new Animation("walkingRF",5);
   walkingLF = new Animation("walkingLF",5);
   walking_x = button3_x;
-  walking_y = button1_y + walkingRF.getHeight();
+  walking_y = tsy1 - walkingRF.getHeight();
   
   //Image assignments
   standingRF = loadImage("walkingRF0000.gif");  //standing image facing right on flat ground

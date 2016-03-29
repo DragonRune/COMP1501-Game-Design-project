@@ -4,7 +4,7 @@ boolean isWalking = false;  //whether the stickman is walking
 boolean isfacingrightCurve1 = false;  //whether the stickman is on the curve or the flat ground, the right bottom side two curves
 boolean isfacingleftCurve = false;  //the left side two curves
 boolean isfacingrightCurve2 = false;  //the right top side two curves
-boolean iscurveUpr = false; //whether the stickman is walking upcurve or below curve on right bottom side of the screen
+boolean iscurveUpr1 = false; //whether the stickman is walking upcurve or below curve on right bottom side of the screen
 boolean iscurveUpl = false; //whether the stickman is walking upcurve or below curve on left side of the screen
 boolean iscurveUpr2 = false; // whether the stickman is walking upcurve or below curve on right top side of the screen
 float walkingSpeed = 16;  //default 12
@@ -61,7 +61,7 @@ void walking(){
   
   //BOOLEANS!!!
   //right bottom curve determine
-  if (walking_x > tsx3 && walking_x < tsx4 && walking_y > tsy5 && walking_y < height){
+  if (walking_x > tsx3 && walking_x < tsx4 && walking_y > button2_y && walking_y < height){
     isfacingrightCurve1 = true;
   }
   else {
@@ -75,7 +75,7 @@ void walking(){
     isfacingleftCurve = false;
   }
   //right top curve determine
-  if(walking_x > tsx3 && walking_x < tsx4 && walking_y >0 && walking_y < tsy3){
+  if(walking_x > tsx3 && walking_x < tsx4 && walking_y >0 && walking_y < button2_y){
     isfacingrightCurve2 = true;
   }
   else{
@@ -88,12 +88,12 @@ void walking(){
   if (walking_x > buttonUD1_x - buttonUD1_width/2 && walking_x < buttonUD1_x + buttonUD1_width/2 && walking_y + walkingRF.getHeight() > tsy4 && walking_y + walkingRF.getHeight() < tsy1){
     if (keyPressed == true){
       if (keyCode == UP){
-        iscurveUpr = true;
+        iscurveUpr1 = true;
         fill (255,255,255);
         text("UP", buttonUD1_x - 100, buttonUD1_y - 100);
       }
       if (keyCode == DOWN){
-        iscurveUpr = false; 
+        iscurveUpr1 = false; 
         fill (255,255,255);
         text("DOWN", buttonUD1_x - 100, buttonUD1_y - 100);
       }
@@ -144,16 +144,16 @@ void walking(){
     
     //right bottom side two curve
     //first right curve walking
-    if (isfacingrightCurve1 == true && isfacingRight == true && iscurveUpr == false){
+    if (isfacingrightCurve1 == true && isfacingRight == true && iscurveUpr1 == false){
       walking_y -= walkingSpeed*(tsy1 - tsy2)/(tsx4 - tsx3);
     }
-    if(isfacingrightCurve1 == true && isfacingRight == false && iscurveUpr == false){
+    if(isfacingrightCurve1 == true && isfacingRight == false && iscurveUpr1 == false){
       walking_y += walkingSpeed*(tsy1 - tsy2)/(tsx4 - tsx3);
     }
-    if(isfacingrightCurve1 == true && isfacingRight == true && iscurveUpr == true){
+    if(isfacingrightCurve1 == true && isfacingRight == true && iscurveUpr1 == true){
       walking_y += walkingSpeed*(tsy1 - tsy2)/(tsx4 - tsx3);
     }
-    if(isfacingrightCurve1 == true && isfacingRight == false && iscurveUpr == true){
+    if(isfacingrightCurve1 == true && isfacingRight == false && iscurveUpr1 == true){
       walking_y -= walkingSpeed*(tsy1 - tsy2)/(tsx4 - tsx3);
     }
     
@@ -185,6 +185,39 @@ void walking(){
     }
     if(isfacingrightCurve2 == true && isfacingRight == false && iscurveUpr2 == true){
       walking_y -= walkingSpeed*(tsy5 - tsy6)/(tsx4 - tsx3);
+    }
+    
+    //walking to the left top will transfer to the left bottom
+    if(walking_x < 0 && walking_y > 0 && walking_y < tsy5){
+      walking_y = tsy1 - walkingRF.getHeight();
+      walking_x = 0;
+      //boolean all reset
+      isfacingRight = true;
+      isfacingrightCurve1 = false;
+      isfacingleftCurve = false;
+      isfacingrightCurve2 = false;
+      iscurveUpr1 = false;
+      iscurveUpl = false;
+      iscurveUpr2 = false;
+      /*println(isfacingrightCurve1);
+      println(isfacingleftCurve);
+      println(isfacingrightCurve2);
+      println(iscurveUpr1);
+      println(iscurveUpl);
+      println(iscurveUpr2);*/
+    }
+    //walking to the left bottom will transfer to the left top
+    if(walking_x < 0 && walking_y > tsy3 && walking_y < height){
+      walking_y = tsy7 - walkingRF.getHeight();
+      walking_x = 0;
+      isfacingRight = true;
+      //boolean all reset
+      isfacingrightCurve1 = false;
+      isfacingleftCurve = false;
+      isfacingrightCurve2 = false;
+      iscurveUpr1 = true;
+      iscurveUpl = true;
+      iscurveUpr2 = true;
     }
   }
   //standing image
