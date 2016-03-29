@@ -4,9 +4,10 @@ boolean isWalking = false;  //whether the stickman is walking
 boolean isfacingrightCurve1 = false;  //whether the stickman is on the curve or the flat ground, the right bottom side two curves
 boolean isfacingleftCurve = false;  //the left side two curves
 boolean isfacingrightCurve2 = false;  //the right top side two curves
-boolean iscurveUpr = false; //whether the stickman is walking upcurve or below curve on right side of the screen
+boolean iscurveUpr = false; //whether the stickman is walking upcurve or below curve on right bottom side of the screen
 boolean iscurveUpl = false; //whether the stickman is walking upcurve or below curve on left side of the screen
-float walkingSpeed = 50;  //default 12
+boolean iscurveUpr2 = false; // whether the stickman is walking upcurve or below curve on right top side of the screen
+float walkingSpeed = 16;  //default 12
 String upordown;
 
 class Animation {
@@ -56,20 +57,32 @@ void walking(){
     isWalking = false;
   }
   
+  
+  
   //BOOLEANS!!!
-  //right curve determine
-  if (walking_x > tsx3 && walking_x < tsx4){
+  //right bottom curve determine
+  if (walking_x > tsx3 && walking_x < tsx4 && walking_y > tsy5 && walking_y < height){
     isfacingrightCurve1 = true;
   }
-  //left curve determine
-  else if (walking_x < tsx2 && walking_x > tsx1){
-    if (walking_y > button1_y && walking_y < button3_y){
-      isfacingleftCurve = true;
-    }
-  }
-  else{
+  else {
     isfacingrightCurve1 = false;
   }
+  //left curve determine
+  if (walking_x < tsx2 && walking_x > tsx1 && walking_y > button1_y && walking_y < button3_y){
+    isfacingleftCurve = true;
+  }
+  else{
+    isfacingleftCurve = false;
+  }
+  //right top curve determine
+  if(walking_x > tsx3 && walking_x < tsx4 && walking_y >0 && walking_y < tsy3){
+    isfacingrightCurve2 = true;
+  }
+  else{
+    isfacingrightCurve2 = false;
+  }
+  
+  
   
   //if the stickman is walking up right bottom
   if (walking_x > buttonUD1_x - buttonUD1_width/2 && walking_x < buttonUD1_x + buttonUD1_width/2 && walking_y + walkingRF.getHeight() > tsy4 && walking_y + walkingRF.getHeight() < tsy1){
@@ -98,6 +111,21 @@ void walking(){
         iscurveUpl = false; 
         fill (255,255,255);
         text("DOWN", buttonUD2_x, buttonUD2_y - 100);
+      }
+    }
+  }
+  //if the stickman is walking up right top
+  if (walking_x > buttonUD3_x - buttonUD3_width/2 && walking_x < buttonUD3_x + buttonUD3_width/3 && walking_y + walkingRF.getHeight() > 0 && walking_y + walkingRF.getHeight() < tsy4){
+    if (keyPressed == true){
+      if (keyCode == UP){
+        iscurveUpr2 = true;
+        fill (255,255,255);
+        text("UP", buttonUD3_x, buttonUD3_y - 100);
+      }
+      if (keyCode == DOWN){
+        iscurveUpr2 = false; 
+        fill (255,255,255);
+        text("DOWN", buttonUD3_x, buttonUD3_y - 100);
       }
     }
   }
@@ -146,6 +174,18 @@ void walking(){
     
     //right top two curves
     //right curve walking
+    if (isfacingrightCurve2 == true && isfacingRight == true && iscurveUpr2 == false){
+      walking_y -= walkingSpeed*(tsy5 - tsy6)/(tsx4 - tsx3);
+    }
+    if(isfacingrightCurve2 == true && isfacingRight == false && iscurveUpr2 == false){
+      walking_y += walkingSpeed*(tsy5 - tsy6)/(tsx4 - tsx3);
+    }
+    if(isfacingrightCurve2 == true && isfacingRight == true && iscurveUpr2 == true){
+      walking_y += walkingSpeed*(tsy5 - tsy6)/(tsx4 - tsx3);
+    }
+    if(isfacingrightCurve2 == true && isfacingRight == false && iscurveUpr2 == true){
+      walking_y -= walkingSpeed*(tsy5 - tsy6)/(tsx4 - tsx3);
+    }
   }
   //standing image
   //if the stickman is not walking then show standing image at that position

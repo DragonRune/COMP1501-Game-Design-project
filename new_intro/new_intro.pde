@@ -24,6 +24,11 @@ float buttonUD2_x;
 float buttonUD2_y;
 float buttonUD2_width;
 float buttonUD2_height;
+//button updown3 right top side
+float buttonUD3_x;
+float buttonUD3_y;
+float buttonUD3_width;
+float buttonUD3_height;
 
 //road point define
 //position of points see the pic in the files "titlescreen points position"
@@ -58,7 +63,7 @@ PImage standingLF;
 void setup()
 {
   fullScreen();
-  frameRate(12);
+  frameRate(16);  //default 12
   noStroke();
   rectMode(CENTER);
   textAlign(CENTER, CENTER);
@@ -81,7 +86,7 @@ void setup()
   //button updown assignment
   //button1
   buttonUD1_x = width - button1_height;
-  buttonUD1_y = button2_y + (button3_y - button2_y)/2 + button1_height*2 + button1_height/4;
+  buttonUD1_y = button2_y + (button3_y - button2_y)/2 + button1_height*2.5 - button1_height/4;
   buttonUD1_width = button1_height/2;
   buttonUD1_height = button1_height/2;
   //button2
@@ -89,6 +94,11 @@ void setup()
   buttonUD2_y = button1_y + (button2_y - button1_y)/2 + button1_height*2.5 - button1_height/4;
   buttonUD2_width = button1_height/2;
   buttonUD2_height = button1_height/2;
+  //button3
+  buttonUD3_x = width - button1_height;
+  buttonUD3_y = button1_y - (button2_y - button1_y)/2 + button1_height*2.5 - button1_height/4;
+  buttonUD3_width = button1_height/2;
+  buttonUD3_height = button1_height/2;
   
   //road point define
   //position of points see the pic in the files points
@@ -111,7 +121,7 @@ void setup()
   walkingRF = new Animation("walkingRF",5);
   walkingLF = new Animation("walkingLF",5);
   walking_x = button3_x;
-  walking_y = button3_y + walkingRF.getHeight()/2;
+  walking_y = button1_y + walkingRF.getHeight();
   
   //Image assignments
   standingRF = loadImage("walkingRF0000.gif");  //standing image facing right on flat ground

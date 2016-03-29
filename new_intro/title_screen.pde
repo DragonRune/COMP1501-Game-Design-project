@@ -38,6 +38,7 @@ void buttonUDPaint()
   fill(0);
   rect(buttonUD1_x, buttonUD1_y, buttonUD1_width, buttonUD1_height, 7);
   rect(buttonUD2_x, buttonUD2_y, buttonUD2_width, buttonUD2_height, 7);
+  rect(buttonUD3_x, buttonUD3_y, buttonUD3_width, buttonUD3_height, 7);
 }
 
 void roadPaint()
