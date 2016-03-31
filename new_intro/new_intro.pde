@@ -159,6 +159,10 @@ void setup()
   walking_height = walkingRF.getHeight()*(height/1440);
   walking_x = tsx1;
   walking_y = tsy1 - walking_height/2;
+  
+  //gname assignments
+  gname_x = tsx2/1.5;
+  gname_y = tsy7/3;
 }
 
 void draw()
@@ -170,5 +174,6 @@ void draw()
   buttonUDPaint();
   roadPaint();
   doorPaint();
+  gnamePaint();
   walking();
 }

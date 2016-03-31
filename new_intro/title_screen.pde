@@ -137,6 +137,8 @@ void doorPaint()
   image(tsdoor, door3_x, door3_y, door_width, door_height);
 }
 
-void titlePaint(){
-  
+void gnamePaint(){
+  fill(255, 255, 255);
+  textFont(gnameFont, button1_height/1.25);
+  text("Dungeons Dragon Math", gname_x, gname_y);
 }
