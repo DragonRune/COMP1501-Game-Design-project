@@ -28,7 +28,7 @@ class Animation {
 
   void display(float xpos, float ypos) {
     frame = (frame+1) % imageCount;
-    image(images[frame], xpos, ypos);
+    image(images[frame], xpos, ypos, walking_width, walking_height);
   }
   
   int getWidth() {
@@ -189,7 +189,7 @@ void walking(){
     
     //walking to the left top will transfer to the left bottom
     if(walking_x < 0 && walking_y > 0 && walking_y < tsy5){
-      walking_y = tsy1 - walkingRF.getHeight();
+      walking_y = tsy1 - walkingRF.getHeight()/2;
       walking_x = 0;
       //boolean all reset
       isfacingRight = true;
@@ -208,7 +208,7 @@ void walking(){
     }
     //walking to the left bottom will transfer to the left top
     if(walking_x < 0 && walking_y > tsy3 && walking_y < height){
-      walking_y = tsy7 - walkingRF.getHeight();
+      walking_y = tsy7 - walkingRF.getHeight()/2;
       walking_x = 0;
       isfacingRight = true;
       //boolean all reset
@@ -223,9 +223,9 @@ void walking(){
   //standing image
   //if the stickman is not walking then show standing image at that position
   else if(isfacingRight == true){
-    image(standingRF,walking_x,walking_y);
+    image(standingRF,walking_x,walking_y, walking_width, walking_height);
     }
     else {
-      image(standingLF,walking_x,walking_y);
+      image(standingLF,walking_x,walking_y, walking_width, walking_height);
     }
 }

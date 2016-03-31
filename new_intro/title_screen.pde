@@ -127,5 +127,16 @@ void roadPaint()
   rect(button2_x, button2_y + (button2_height*2.5 + button2_height/2)/2, button2_width - button2_width/10, button2_height*2);
   //credits bottom rect
   rect(button1_x, button1_y + (button1_height*2.5 + button1_height/2)/2, button1_width - button1_width/10, button1_height*2);
+}
+
+void doorPaint()
+{
+  imageMode(CENTER);
+  image(tsdoor, door1_x, door1_y, door_width, door_height);
+  image(tsdoor, door2_x, door2_y, door_width, door_height);
+  image(tsdoor, door3_x, door3_y, door_width, door_height);
+}
+
+void titlePaint(){
   
 }

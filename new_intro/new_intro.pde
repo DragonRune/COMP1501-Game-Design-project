@@ -30,6 +30,21 @@ float buttonUD3_y;
 float buttonUD3_width;
 float buttonUD3_height;
 
+//game name position
+float gname_x;
+float gname_y;
+float gname_speed;
+
+//doors position and size
+float door1_x;
+float door1_y;
+float door2_x;
+float door2_y;
+float door3_x;
+float door3_y;
+float door_width;
+float door_height;
+
 //road point define
 //position of points see the pic in the files "titlescreen points position"
 float tsx1;  //title screen x position 1
@@ -48,9 +63,12 @@ float tsy7;
 //animation position
 float walking_x;
 float walking_y;
+float walking_width;
+float walking_height;
 
 //text font
 PFont titleFont;
+PFont gnameFont;
 
 //animation
 Animation walkingRF;
@@ -59,6 +77,7 @@ Animation walkingLF;
 //image
 PImage standingRF;
 PImage standingLF;
+PImage tsdoor;  //title screen door
 
 void setup()
 {
@@ -116,16 +135,30 @@ void setup()
   
   //Font assignments
   titleFont = loadFont("titleFont.vlw");
-  
-  //animation assignments
-  walkingRF = new Animation("walkingRF",5);
-  walkingLF = new Animation("walkingLF",5);
-  walking_x = button3_x;
-  walking_y = tsy1 - walkingRF.getHeight();
+  gnameFont = loadFont("gnameFont.vlw");
   
   //Image assignments
   standingRF = loadImage("walkingRF0000.gif");  //standing image facing right on flat ground
   standingLF = loadImage("walkingLF0000.gif");  //standing image facing left on flat ground
+  tsdoor = loadImage("door.png");
+  
+  //door assignments
+  door_width = button1_width/6;
+  door_height = button1_height*1.5;
+  door1_x = button3_x + button3_width/3;
+  door1_y = tsy5 - door_height/2;
+  door2_x = button2_x;
+  door2_y = tsy3 - door_height/2;
+  door3_x = button1_x - button1_width/3;
+  door3_y = tsy1 - door_height/2;
+  
+  //animation assignments
+  walkingRF = new Animation("walkingRF",5);
+  walkingLF = new Animation("walkingLF",5);
+  walking_width = walkingRF.getWidth()*(width/2560);
+  walking_height = walkingRF.getHeight()*(height/1440);
+  walking_x = tsx1;
+  walking_y = tsy1 - walking_height/2;
 }
 
 void draw()
@@ -136,5 +169,6 @@ void draw()
   button3Paint();
   buttonUDPaint();
   roadPaint();
+  doorPaint();
   walking();
 }
