@@ -40,6 +40,7 @@ class Animation {
 }
 
 void walking(){
+  imageMode(CENTER);
   //determine the direction
   if (keyPressed == true){
     if (key == CODED){
@@ -228,4 +229,72 @@ void walking(){
     else {
       image(standingLF,walking_x,walking_y, walking_width, walking_height);
     }
+}
+
+//open door action change game state
+void openDoor(){
+  //open door of credits
+  if (walking_x > door1_x && walking_x < door1_x + door1_width*2 && walking_y > tsy7 && walking_y < tsy5){
+    if (keyPressed == true){
+      if (keyCode == UP){
+        //gamestate = credits
+        textFont(titleFont, button1_height/1.25);
+        text("Credits", walking_x, walking_y);
+        door1_open = true;
+      }
+    }
+  }
+  else{
+    door1_open = false;
+  }
+  if(door1_width >= doorOpen_width && door1_open == true){
+    door1_width -= 2;
+  }
+  if(door1_width <= doorClose_width && door1_open == false){
+    door1_width += 2;
+  }
+  
+  //open door of option
+  if (walking_x > door2_x && walking_x < door2_x + door2_width*2 && walking_y > tsy5 && walking_y < tsy3){
+    if (keyPressed == true){
+      if (keyCode == UP){
+        //open door of option
+        //gamestate = option
+        textFont(titleFont, button1_height/1.25);
+        text("Option", walking_x, walking_y);
+        door2_open = true;
+      }
+    }
+  }
+  else{
+    door2_open = false;
+  }
+  if(door2_width >= doorOpen_width && door2_open == true){
+    door2_width -= 2;
+  }
+  if(door2_width <= doorClose_width && door2_open == false){
+    door2_width += 2;
+  }
+  
+  //open door of start
+  if (walking_x > door3_x && walking_x < door3_x + door3_width*2 && walking_y > tsy3 && walking_y < tsy1){
+    if (keyPressed == true){
+      if (keyCode == UP){
+        //open door of start
+        //gamestate = start
+        textFont(titleFont, button1_height/1.25);
+        text("Start", walking_x, walking_y);
+        door3_open = true;
+      }
+    } 
+  }
+  else{
+    door3_open = false;
+  }
+  if(door3_width >= doorOpen_width && door3_open == true){
+    door3_width -= 2;
+  }
+  if(door3_width <= doorClose_width && door3_open == false){
+    door3_width += 2;
+  }
 }

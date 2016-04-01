@@ -17,7 +17,7 @@ void button2Paint()
   rect(button2_x, button2_y, button2_width, button2_height, 7);
   fill(255, 255, 255);
   textFont(titleFont, button2_height/1.25);
-  text("Options", button2_x, button2_y);
+  text("Option", button2_x, button2_y);
 }
 
 void button3Paint()
@@ -131,10 +131,10 @@ void roadPaint()
 
 void doorPaint()
 {
-  imageMode(CENTER);
-  image(tsdoor, door1_x, door1_y, door_width, door_height);
-  image(tsdoor, door2_x, door2_y, door_width, door_height);
-  image(tsdoor, door3_x, door3_y, door_width, door_height);
+  imageMode(CORNER);
+  image(tsdoor, door1_x, door1_y, door1_width, door1_height);
+  image(tsdoor, door2_x, door2_y, door2_width, door2_height);
+  image(tsdoor, door3_x, door3_y, door3_width, door3_height);
 }
 
 void gnamePaint(){

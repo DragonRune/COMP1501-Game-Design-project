@@ -38,12 +38,21 @@ float gname_speed;
 //doors position and size
 float door1_x;
 float door1_y;
+float door1_width;
+float door1_height;
 float door2_x;
 float door2_y;
+float door2_width;
+float door2_height;
 float door3_x;
 float door3_y;
-float door_width;
-float door_height;
+float door3_width;
+float door3_height;
+float doorOpen_width;
+float doorClose_width;
+boolean door1_open = false;
+boolean door2_open = false;
+boolean door3_open = false;
 
 //road point define
 //position of points see the pic in the files "titlescreen points position"
@@ -82,10 +91,6 @@ PImage tsdoor;  //title screen door
 void setup()
 {
   fullScreen();
-  frameRate(16);  //default 12
-  noStroke();
-  rectMode(CENTER);
-  textAlign(CENTER, CENTER);
   //button assignments
   //button1  credits
   button1_x = width/2;
@@ -143,14 +148,23 @@ void setup()
   tsdoor = loadImage("door.png");
   
   //door assignments
-  door_width = button1_width/6;
-  door_height = button1_height*1.5;
-  door1_x = button3_x + button3_width/3;
-  door1_y = tsy5 - door_height/2;
-  door2_x = button2_x;
-  door2_y = tsy3 - door_height/2;
-  door3_x = button1_x - button1_width/3;
-  door3_y = tsy1 - door_height/2;
+  //door1 credits
+  door1_width = button1_width/6;
+  door1_height = button1_height*1.5;
+  door1_x = button3_x + door1_width;
+  door1_y = tsy5 - door1_height;
+  //door2 option
+  door2_width = button1_width/6;
+  door2_height = button1_height*1.5;
+  door2_x = button2_x - door2_width/2;
+  door2_y = tsy3 - door2_height;
+  //door3 start
+  door3_width = button1_width/6;
+  door3_height = button1_height*1.5;
+  door3_x = button1_x - door3_width*2;
+  door3_y = tsy1 - door3_height;
+  doorOpen_width = (button1_width/6)/3;
+  doorClose_width = button1_width/6;
   
   //animation assignments
   walkingRF = new Animation("walkingRF",5);
@@ -158,7 +172,7 @@ void setup()
   walking_width = walkingRF.getWidth()*(width/2560);
   walking_height = walkingRF.getHeight()*(height/1440);
   walking_x = tsx1;
-  walking_y = tsy1 - walking_height/2;
+  walking_y = tsy1 - walking_height/2;  //default: tsy1 - walking_height/2
   
   //gname assignments
   gname_x = tsx2/1.5;
@@ -167,7 +181,17 @@ void setup()
 
 void draw()
 {
+  intro();
+}
+
+//game state = intro
+void intro(){
+  frameRate(16);  //default 12
+  noStroke();
+  rectMode(CENTER);
+  textAlign(CENTER, CENTER);
   background(0);
+  
   button1Paint();
   button2Paint();
   button3Paint();
@@ -175,5 +199,6 @@ void draw()
   roadPaint();
   doorPaint();
   gnamePaint();
+  openDoor();
   walking();
 }
