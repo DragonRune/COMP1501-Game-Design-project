@@ -82,10 +82,12 @@ PFont gnameFont;
 //animation
 Animation walkingRF;
 Animation walkingLF;
+Animation grid1;
 
 //image
 PImage standingRF;
 PImage standingLF;
+PImage gridR;  //grid regular
 PImage tsdoor;  //title screen door
 
 void setup()
@@ -145,6 +147,7 @@ void setup()
   //Image assignments
   standingRF = loadImage("walkingRF0000.gif");  //standing image facing right on flat ground
   standingLF = loadImage("walkingLF0000.gif");  //standing image facing left on flat ground
+  gridR = loadImage("grid10000.gif");  //regular grid animation
   tsdoor = loadImage("door.png");
   
   //door assignments
@@ -173,6 +176,7 @@ void setup()
   walking_height = walkingRF.getHeight()*(height/1440);
   walking_x = tsx1;
   walking_y = tsy1 - walking_height/2;  //default: tsy1 - walking_height/2
+  grid1 = new Animation("grid1", 12);
   
   //gname assignments
   gname_x = tsx2/1.5;
@@ -182,6 +186,7 @@ void setup()
 void draw()
 {
   intro();
+  grid1.gridDisplay(width/2, height/2);
 }
 
 //game state = intro

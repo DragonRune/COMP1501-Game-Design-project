@@ -31,6 +31,11 @@ class Animation {
     image(images[frame], xpos, ypos, walking_width, walking_height);
   }
   
+  void gridDisplay(float xpos, float ypos) {
+    frame = (frame+1) % imageCount;
+    image(images[frame], xpos, ypos, width, height/12);
+  }
+  
   int getWidth() {
     return images[0].width;
   }
